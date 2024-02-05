@@ -6,19 +6,26 @@ import './index.css'
 class Welcome extends Component {
   state = {isSubscribe: true}
 
-  render() {
+  onSubscribe = ()  =>{
+    this.setState(prevState => ({isSubscribe: !prevState.isSubscribe}))
+  }
+
+  
+  getButtonText = () => {
     const {isSubscribe} = this.state
-    let renderSubscribeButton
-    if (isSubscribe) {
-      renderSubscribeButton = <button type="button">Subscribe</button>
-    } else {
-      renderSubscribeButton = <button type="button">Subscribed </button>
-    }
+
+    return isSubscribe ? 'Subscribe' : 'Subscribed'
+  }
+
+  render() {
+    const buttontext = this.getButtonText()
+    
     return (
       <div className="container">
         <h1 className="title">Welcome</h1>
         <p className="description">Thank you! Happy Learning</p>
-        {renderSubscribeButton}
+         <button type="button" onClick={this.onSubsribe}>
+          {buttontext}
       </div>
     )
   }
